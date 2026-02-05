@@ -1,0 +1,26 @@
+{
+  "name": "ultraviolet-node-proxy",
+  "version": "1.0.0",
+  "description": "A high-performance web proxy using Ultraviolet and Bare Server Node.",
+  "main": "index.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs",
+    "dev": "nodemon index.mjs"
+  },
+  "keywords": [
+    "proxy",
+    "ultraviolet",
+    "unblocker"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@titaniumnetwork-dev/ultraviolet": "^3.2.10",
+    "@tomphttp/bare-server-node": "^2.0.6",
+    "express": "^4.21.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
