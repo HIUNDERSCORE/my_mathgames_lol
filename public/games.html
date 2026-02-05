@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head><link rel="stylesheet" href="style.css"></head>
+<body>
+    <nav><a href="proxy.html">Proxy</a> <a href="games.html">Games</a></nav>
+    <div class="game-grid" id="grid"></div>
+    <script src="uv/uv.config.js"></script>
+    <script>
+        const games = [
+            { name: "Roblox", url: "https://now.gg/play/roblox-corporation/5349/roblox" },
+            { name: "Slope", url: "https://kripeshadwani.github.io/slope/" },
+            { name: "Minecraft", url: "https://classic.minecraft.net" },
+            { name: "FNAF 6", url: "https://fnaf6.io/play" }
+        ];
+
+        const grid = document.getElementById('grid');
+        games.forEach(g => {
+            const card = document.createElement('div');
+            card.className = 'card'; card.innerHTML = `<h3>${g.name}</h3>`;
+            card.onclick = async () => {
+                await window.navigator.serviceWorker.register('./uv/uv.sw.js', { scope: '/service/' });
+                location.href = '/service/' + __uv$config.encodeUrl(g.url);
+            };
+            grid.appendChild(card);
+        });
+    </script>
+</body>
+</html>
