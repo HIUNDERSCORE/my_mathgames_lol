@@ -1,18 +1,22 @@
-# Use a slim Node.js image to save memory
-FROM node:18-slim
+# Alpine is the smallest possible base image
+FROM node:18-alpine
 
-# Set the working directory
+# Set the environment to production to skip heavy dev tools
+ENV NODE_ENV=production
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Copy only package files first
 COPY package*.json ./
-RUN npm install
 
-# Copy the rest of your code
+# Install ONLY production dependencies to save RAM
+RUN npm install --omit=dev
+
+# Copy the code
 COPY . .
 
-# Expose the port (Koyeb uses 8080 by default)
+# Force Koyeb to use port 8080
+ENV PORT=8080
 EXPOSE 8080
 
-# Start the application
+# Start with a direct node command
 CMD ["node", "index.mjs"]
